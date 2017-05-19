@@ -23,6 +23,7 @@ defmodule RMT.Web.Router do
     pipe_through :api
 
     post "/login", LoginController, :login
+    resources "/teachers", TeacherController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
