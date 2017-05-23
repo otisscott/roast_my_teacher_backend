@@ -1,10 +1,10 @@
 defmodule RMT.Models.Roast do
   use Ecto.Schema
   import Ecto.Changeset
-  alias RMT.Models.Teacher
+  alias RMT.Models.{Teacher, Roast}
 
 
-  schema "teacher_roasts" do
+  schema "roasts" do
     field :comment, :string
     field :rating, :integer
 

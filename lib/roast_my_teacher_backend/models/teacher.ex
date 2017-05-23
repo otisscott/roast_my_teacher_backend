@@ -1,10 +1,10 @@
 defmodule RMT.Models.Teacher do
   use Ecto.Schema
   import Ecto.Changeset
-  alias RMT.Models.Roast
+  alias RMT.Models.{Roast, Teacher}
 
 
-  schema "models_teachers" do
+  schema "teachers" do
     field :name, :string
     field :subject, :string
 
