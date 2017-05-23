@@ -1,12 +1,14 @@
 defmodule RMT.Models.Teacher do
   use Ecto.Schema
   import Ecto.Changeset
-  alias RMT.Models.Teacher
+  alias RMT.Models.Roast
 
 
   schema "models_teachers" do
     field :name, :string
     field :subject, :string
+
+    has_many :roasts, Roast
 
     timestamps()
   end

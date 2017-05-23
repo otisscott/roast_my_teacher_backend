@@ -1,4 +1,4 @@
-defmodule RMT.Models do
+defmodule RMT.Teachers do
   @moduledoc """
   The boundary for the Models system.
   """

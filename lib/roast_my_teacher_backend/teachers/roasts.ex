@@ -1,4 +1,4 @@
-defmodule RMT.Teacher do
+defmodule RMT.Teachers.Roasts do
   @moduledoc """
   The boundary for the Teacher system.
   """
@@ -6,8 +6,7 @@ defmodule RMT.Teacher do
   import Ecto.Query, warn: false
   alias RMT.Repo
 
-  alias RMT.Teacher.Roasts
-  alias RMT.Models.Teacher
+  alias RMT.Models.{Teacher, Roast}
 
   @doc """
   Returns the list of roasts.
@@ -36,7 +35,7 @@ defmodule RMT.Teacher do
       ** (Ecto.NoResultsError)
 
   """
-  def get_roasts!(id), do: Repo.get!(Roasts, id)
+  def get_roast!(id), do: Repo.get!(Roast, id)
 
   @doc """
   Creates a roasts.
@@ -50,13 +49,11 @@ defmodule RMT.Teacher do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_roasts(teacher_id, attrs \\ %{}) do
+  def create_roast(teacher_id, attrs \\ %{}) do
     Repo.get(Teacher, teacher_id)
       |> Ecto.build_assoc(:roasts)
-      |
-    %Roasts{}
-    |> Roasts.changeset(attrs)
-    |> Repo.insert()
+      |> Roast.changeset(attrs)
+      |> Repo.insert()
   end
 
   @doc """
@@ -71,7 +68,7 @@ defmodule RMT.Teacher do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_roasts(%Roasts{} = roasts, attrs) do
+  def update_roast(%Roast{} = roasts, attrs) do
     roasts
     |> Roasts.changeset(attrs)
     |> Repo.update()
@@ -89,7 +86,7 @@ defmodule RMT.Teacher do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_roasts(%Roasts{} = roasts) do
+  def delete_roast(%Roast{} = roasts) do
     Repo.delete(roasts)
   end
 
@@ -102,7 +99,7 @@ defmodule RMT.Teacher do
       %Ecto.Changeset{source: %Roasts{}}
 
   """
-  def change_roasts(%Roasts{} = roasts) do
-    Roasts.changeset(roasts, %{})
+  def change_roast(%Roast{} = roasts) do
+    Roast.changeset(roasts, %{})
   end
 end
