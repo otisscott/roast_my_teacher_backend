@@ -6,6 +6,8 @@ defmodule RMT.Repo.Migrations.CreateRMT.Models.Roasts do
       add :rating, :integer
       add :comment, :string
 
+      add :teacher_id, references(:teachers), on_delete: :delete_all
+
       timestamps()
     end
 

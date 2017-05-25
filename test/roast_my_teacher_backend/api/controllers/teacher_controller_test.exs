@@ -1,7 +1,7 @@
-defmodule RMT.Web.TeacherControllerTest do
+defmodule RMT.API.TeacherControllerTest do
   use RMT.Web.ConnCase
 
-  alias RMT.Models
+  alias RMT.Teachers
   alias RMT.Models.Teacher
 
   @create_attrs %{name: "some name", subject: "some subject"}
@@ -9,7 +9,7 @@ defmodule RMT.Web.TeacherControllerTest do
   @invalid_attrs %{name: nil, subject: nil}
 
   def fixture(:teacher) do
-    {:ok, teacher} = Models.create_teacher(@create_attrs)
+    {:ok, teacher} = Teachers.create_teacher(@create_attrs)
     teacher
   end
 

@@ -28,7 +28,7 @@ defmodule RMT.API.TeacherController do
   def update(conn, %{"id" => id, "teacher" => teacher_params}) do
     teacher = Teachers.get_teacher!(id)
 
-    with {:ok, %Teacher{} = teacher} <- Teacher.update_teacher(teacher, teacher_params) do
+    with {:ok, %Teacher{} = teacher} <- Teachers.update_teacher(teacher, teacher_params) do
       render(conn, "show.json", teacher: teacher)
     end
   end

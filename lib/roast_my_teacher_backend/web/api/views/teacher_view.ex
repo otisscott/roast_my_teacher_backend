@@ -1,4 +1,4 @@
-defmodule RMT.Web.TeacherView do
+defmodule RMT.API.TeacherView do
   use RMT.Web, :view
   alias RMT.Web.TeacherView
 

@@ -23,6 +23,8 @@ defmodule RMT.Web.ConnCase do
 
       # The default endpoint for testing
       @endpoint RMT.Web.Endpoint
+
+      import RMT.Web.ConnCase
     end
   end
 
@@ -33,6 +35,11 @@ defmodule RMT.Web.ConnCase do
       Ecto.Adapters.SQL.Sandbox.mode(RMT.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  def mock_teacher do
+    {:ok, teacher} = RMT.Teachers.create_teacher(%{name: "Albinson", subject: "Computer Science"})
+    teacher
   end
 
 end

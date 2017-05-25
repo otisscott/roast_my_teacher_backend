@@ -50,4 +50,9 @@ defmodule RMT.DataCase do
       end)
     end)
   end
+
+  def mock_teacher do
+    {:ok, teacher} = RMT.Teachers.create_teacher(%{name: "Albinson", subject: "Computer Science"})
+    teacher
+  end
 end

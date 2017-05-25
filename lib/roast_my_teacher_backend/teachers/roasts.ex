@@ -18,7 +18,7 @@ defmodule RMT.Teachers.Roasts do
 
   """
   def list_roasts(teacher_id) do
-    Repo.all(from t in Teacher, where: t.id == ^teacher_id)
+    Repo.all(from r in Roast, where: r.teacher_id == ^teacher_id)
   end
 
   @doc """
@@ -49,8 +49,8 @@ defmodule RMT.Teachers.Roasts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_roast(teacher_id, attrs \\ %{}) do
-    Repo.get(Teacher, teacher_id)
+  def create_roast(attrs \\ %{}, teacher) do
+    Repo.get(Teacher, teacher.id)
       |> Ecto.build_assoc(:roasts)
       |> Roast.changeset(attrs)
       |> Repo.insert()
@@ -70,7 +70,7 @@ defmodule RMT.Teachers.Roasts do
   """
   def update_roast(%Roast{} = roasts, attrs) do
     roasts
-    |> Roasts.changeset(attrs)
+    |> Roast.changeset(attrs)
     |> Repo.update()
   end
 

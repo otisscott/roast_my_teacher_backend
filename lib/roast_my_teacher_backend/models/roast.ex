@@ -19,5 +19,6 @@ defmodule RMT.Models.Roast do
     |> validate_required([:rating, :comment])
     |> cast_assoc(:teacher)
     |> validate_length(:comment, min: 1, max: 1600)
+    |> validate_number(:rating, greater_than_or_equal_to: -5, less_than_or_equal_to: 5)
   end
 end

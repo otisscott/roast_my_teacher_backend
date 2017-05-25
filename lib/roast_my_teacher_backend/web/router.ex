@@ -24,7 +24,7 @@ defmodule RMT.Web.Router do
 
     post "/login", LoginController, :login
     resources "/teachers", TeacherController, except: [:new, :edit] do
-      resources "/roasts", RoastsController, except: [:new, :edit]
+      resources "/roasts", RoastController, except: [:new, :edit]
     end
   end
 
