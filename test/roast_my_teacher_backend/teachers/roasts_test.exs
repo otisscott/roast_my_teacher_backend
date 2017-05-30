@@ -4,17 +4,17 @@ defmodule RMT.RoastsTest do
   alias RMT.Teachers.Roasts
 
   describe "roasts" do
-    alias RMT.Models.{Roast, Teacher}
+    alias RMT.Models.Roast
 
     @valid_attrs %{comment: "albinson sucks", rating: 0}
     @update_attrs %{comment: "albinson is great", rating: 0}
     @invalid_attrs %{comment: "", rating: 6}
 
     def roast_fixture(attrs \\ %{}) do
-      teacher = mock_teacher
+      teacher = mock_teacher()
       {:ok, roast} = attrs
         |> Enum.into(@valid_attrs)
-        |> Roasts.create_roast(teacher)
+        |> Roasts.create_roast(teacher.id)
 
       %{roast: roast, teacher: teacher}
     end
@@ -30,13 +30,13 @@ defmodule RMT.RoastsTest do
     end
 
     test "create_roast/1 with valid data creates a roast" do
-      assert {:ok, %Roast{} = roast} = Roasts.create_roast(@valid_attrs, mock_teacher)
+      assert {:ok, %Roast{} = roast} = Roasts.create_roast(@valid_attrs, mock_teacher().id)
       assert roast.comment == @valid_attrs.comment
       assert roast.rating == @valid_attrs.rating
     end
 
     test "create_roast/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Roasts.create_roast(@invalid_attrs, mock_teacher)
+      assert {:error, %Ecto.Changeset{}} = Roasts.create_roast(@invalid_attrs, mock_teacher().id)
     end
 
     test "update_roast/2 with valid data updates the roast" do
@@ -60,7 +60,7 @@ defmodule RMT.RoastsTest do
     end
 
     test "change_roast/1 returns a roast changeset" do
-      roast = roast_fixture()
+      %{roast: roast} = roast_fixture()
       assert %Ecto.Changeset{} = Roasts.change_roast(roast)
     end
   end

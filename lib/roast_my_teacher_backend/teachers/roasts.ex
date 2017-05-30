@@ -49,8 +49,8 @@ defmodule RMT.Teachers.Roasts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_roast(attrs \\ %{}, teacher) do
-    Repo.get(Teacher, teacher.id)
+  def create_roast(attrs \\ %{}, teacher_id) do
+    Repo.get(Teacher, teacher_id)
       |> Ecto.build_assoc(:roasts)
       |> Roast.changeset(attrs)
       |> Repo.insert()

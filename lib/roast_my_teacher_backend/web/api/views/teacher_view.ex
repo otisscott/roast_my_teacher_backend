@@ -1,6 +1,6 @@
 defmodule RMT.API.TeacherView do
   use RMT.Web, :view
-  alias RMT.Web.TeacherView
+  alias RMT.API.TeacherView
 
   def render("index.json", %{teachers: teachers}) do
     %{data: render_many(teachers, TeacherView, "teacher.json")}

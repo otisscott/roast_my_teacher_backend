@@ -10,12 +10,12 @@ defmodule RMT.API.RoastControllerTest do
   @invalid_attrs %{comment: nil, rating: nil}
 
   def fixture(:roast, teacher) do
-    {:ok, roast} = Roasts.create_roast(@create_attrs, teacher)
+    {:ok, roast} = Roasts.create_roast(@create_attrs, teacher.id)
     roast
   end
 
   setup %{conn: conn} do
-    teacher = mock_teacher
+    teacher = mock_teacher()
     {:ok, teacher: teacher, conn: put_req_header(conn, "accept", "application/json")}
   end
 

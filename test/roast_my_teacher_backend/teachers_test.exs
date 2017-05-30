@@ -2,6 +2,7 @@ defmodule RMT.TeachersTest do
   use RMT.DataCase
 
   alias RMT.Teachers
+  alias RMT.Teachers.Roasts
 
   describe "teachers" do
     alias RMT.Models.Teacher
@@ -9,6 +10,12 @@ defmodule RMT.TeachersTest do
     @valid_attrs %{name: "some name", subject: "some subject"}
     @update_attrs %{name: "some updated name", subject: "some updated subject"}
     @invalid_attrs %{name: nil, subject: nil}
+
+    def teacher_rating_fixture(rating, attrs \\ %{}) do
+      teacher = teacher_fixture(attrs)
+      Roasts.create_roast(%{rating: rating, comment: "comment"}, teacher.id)
+      teacher
+    end
 
     def teacher_fixture(attrs \\ %{}) do
       {:ok, teacher} =
@@ -19,9 +26,24 @@ defmodule RMT.TeachersTest do
       teacher
     end
 
-    test "list_teachers/0 returns all teachers" do
+    test "list_teachers/0 returns all teachers with no ratings" do
       teacher = teacher_fixture()
-      assert Teachers.list_teachers() == [teacher]
+      assert Teachers.list_teachers() == [
+        teacher
+          |> Map.from_struct
+          |> Map.take([:name, :subject, :id])
+          |> Map.put(:rating, 0)
+      ]
+    end
+
+    test "list_teachers/0 returns all teachers with proper rating" do
+      teacher = teacher_rating_fixture(4)
+      assert Teachers.list_teachers() == [
+        teacher
+          |> Map.from_struct
+          |> Map.take([:name, :subject, :id])
+          |> Map.put(:rating, 4)
+      ]
     end
 
     test "get_teacher!/1 returns the teacher with given id" do

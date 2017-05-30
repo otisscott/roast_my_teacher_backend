@@ -13,10 +13,10 @@ defmodule RMT.API.RoastController do
   end
 
   def create(conn, %{"roast" => roast_params}) do
-    with {:ok, %Roast{} = roast} <- Roasts.create_roast(conn.assigns[:teacher_id], roast_params) do
+    with {:ok, %Roast{} = roast} <- Roasts.create_roast(roast_params, conn.assigns[:teacher_id]) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", teacher_roast_path(conn, conn.assigns[:teacher_id], :show, roast))
+      |> put_resp_header("location", teacher_roast_path(conn, :show, conn.assigns[:teacher_id], roast))
       |> render("show.json", roast: roast)
     end
   end

@@ -18,7 +18,10 @@ defmodule RMT.Teachers do
 
   """
   def list_teachers do
-    Repo.all(Teacher)
+    Repo.all from t in Teacher,
+      left_join: roasts in assoc(t, :roasts),
+      group_by: t.id,
+      select: %{id: t.id, name: t.name, subject: t.subject, rating: fragment("COALESCE(?, 0)", sum(roasts.rating))}
   end
 
   @doc """

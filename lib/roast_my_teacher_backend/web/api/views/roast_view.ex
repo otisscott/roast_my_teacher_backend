@@ -1,9 +1,9 @@
-defmodule RMT.Web.RoastView do
+defmodule RMT.API.RoastView do
   use RMT.Web, :view
-  alias RMT.Web.RoastView
+  alias RMT.API.RoastView
 
-  def render("index.json", %{roast: roast}) do
-    %{data: render_many(roast, RoastView, "roast.json")}
+  def render("index.json", %{roasts: roasts}) do
+    %{data: render_many(roasts, RoastView, "roast.json")}
   end
 
   def render("show.json", %{roast: roast}) do
