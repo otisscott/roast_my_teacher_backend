@@ -11,6 +11,7 @@ defmodule RMT.Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug
   end
 
   scope "/", RMT.Web do
