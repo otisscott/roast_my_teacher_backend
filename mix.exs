@@ -17,7 +17,7 @@ defmodule RMT.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {RMT.Application, []},
-     extra_applications: [:logger, :runtime_tools, :comeonin, :guardian]]
+     extra_applications: [:logger, :runtime_tools, :comeonin, :guardian, :edeliver]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,7 +38,9 @@ defmodule RMT.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
      {:guardian, "~> 0.14"},
-     {:cors_plug, "~> 1.2"}]
+     {:cors_plug, "~> 1.2"},
+     {:distillery, "~> 1.0"},
+     {:edeliver, "~> 1.4.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
