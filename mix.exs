@@ -39,8 +39,8 @@ defmodule RMT.Mixfile do
      {:comeonin, "~> 3.0"},
      {:guardian, "~> 0.14"},
      {:cors_plug, "~> 1.2"},
-     {:distillery, "~> 1.0"},
-     {:edeliver, "~> 1.4.0"}]
+     {:distillery, ">= 0.8.0", warn_missing: false},
+     {:edeliver, "~> 1.4.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

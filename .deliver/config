@@ -1,4 +1,4 @@
-APP="roast_my_teacher"
+APP="roast_my_teacher_backend"
 
 BUILD_HOST="54.183.163.136"
 BUILD_USER="elixir_builder"
@@ -24,8 +24,10 @@ pre_erlang_clean_compile() {
     set -e
     cd '$BUILD_AT'
     mkdir -p priv/static
+    cd assets
     npm install
     node_modules/.bin/brunch build --production
+    cd ..
     app='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
   "
 }
